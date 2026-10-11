@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>بُنّ</title>
+  <!-- الدارك مود: نقرأ الاختيار المحفوظ قبل ما تظهر الصفحة -->
+  <script>
+    if (localStorage.getItem("theme") === "dark") document.documentElement.classList.add("dark");
+  </script>
+  <!-- Tailwind CSS (الفريم وورك) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&family=Readex+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- ملف CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#f1f3ee] text-[#2b1d16]">
+
+  <!-- ================= الهيدر ================= -->
+  <!-- data-i18n = النص يتغير حسب اللغة (الترجمة في script.js) -->
+  <header id="header" class="sticky top-0 z-40 bg-[#2b1d16] text-white transition-shadow">
+    <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
+      <a href="#home" class="brand text-3xl" data-i18n="brand">بُنّ</a>
+
+      <nav class="hidden md:flex gap-6">
+        <a href="#home" class="nav-link py-1" data-i18n="nav_home">الرئيسية</a>
+        <a href="#menu" class="nav-link py-1" data-i18n="nav_menu">المنيو</a>
+        <a href="#cart" class="nav-link py-1" data-i18n="nav_cart">السلة</a>
+        <a href="#checkout" class="nav-link py-1" data-i18n="nav_checkout">الدفع</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <!-- زر اللغة -->
+        <button id="lang-btn" class="text-sm border border-white/40 rounded-full px-3 py-1 hover:bg-white/10">EN</button>
+        <!-- زر الدارك مود -->
+        <button id="theme-btn" class="text-xl" aria-label="Dark mode">🌙</button>
+
+        <a href="#cart" class="relative">
+          🛒
+          <span id="cart-count" class="absolute -top-2 -end-3 bg-[#e0a458] text-[#2b1d16] text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+        </a>
+        <!-- زر الهمبرقر -->
+        <button id="burger" class="md:hidden text-2xl" aria-label="Menu">☰</button>
+      </div>
+    </div>
+
+    <!-- قائمة الجوال -->
+    <nav id="mobile-menu" class="hidden md:hidden flex flex-col px-4 pb-3 gap-3 bg-[#2b1d16]">
+      <a href="#home" class="nav-link w-fit" data-i18n="nav_home">الرئيسية</a>
+      <a href="#menu" class="nav-link w-fit" data-i18n="nav_menu">المنيو</a>
+      <a href="#cart" class="nav-link w-fit" data-i18n="nav_cart">السلة</a>
+      <a href="#checkout" class="nav-link w-fit" data-i18n="nav_checkout">الدفع</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ================= صفحة الرئيسية ================= -->
+    <section id="home" class="page">
+      <div class="relative h-[70vh] flex items-center justify-center text-center text-white bg-[#2b1d16]">
+        <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1600" alt="coffee beans" class="absolute inset-0 w-full h-full object-cover opacity-40">
+        <div class="relative px-4">
+          <h1 class="brand text-6xl md:text-8xl mb-4" data-i18n="brand">بُنّ</h1>
+          <p class="text-lg md:text-2xl mb-6" data-i18n="hero_sub"></p>
+          <a href="#menu" class="inline-block bg-[#e0a458] text-[#2b1d16] font-semibold px-8 py-3 rounded-full hover:bg-white transition" data-i18n="hero_btn"></a>
+        </div>
+      </div>
+
+      <div class="max-w-6xl mx-auto px-4 mt-14">
+        <h2 class="text-2xl font-bold mb-6" data-i18n="featured"></h2>
+        <div id="featured" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
+      </div>
+
+      <div class="max-w-6xl mx-auto px-4 mt-16 grid md:grid-cols-2 gap-8 items-center">
+        <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=800" alt="coffee shop" class="rounded-2xl w-full h-72 object-cover bg-[#d9cfc4]">
+        <div>
+          <h2 class="text-2xl font-bold mb-3" data-i18n="about_title"></h2>
+          <p class="leading-8 text-gray-700" data-i18n="about_text"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= صفحة المنيو ================= -->
+    <section id="menu" class="page hidden">
+      <div class="max-w-6xl mx-auto px-4 mt-10">
+        <h1 class="text-3xl font-bold mb-6" data-i18n="menu_title"></h1>
+
+        <div class="flex flex-wrap gap-3 mb-8">
+          <button class="filter-btn active px-5 py-2 rounded-full bg-white shadow" data-filter="all" data-i18n="f_all"></button>
+          <button class="filter-btn px-5 py-2 rounded-full bg-white shadow" data-filter="hot" data-i18n="f_hot"></button>
+          <button class="filter-btn px-5 py-2 rounded-full bg-white shadow" data-filter="cold" data-i18n="f_cold"></button>
+          <button class="filter-btn px-5 py-2 rounded-full bg-white shadow" data-filter="sweets" data-i18n="f_sweets"></button>
+        </div>
+
+        <div id="products" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"></div>
+      </div>
+    </section>
+
+    <!-- ================= صفحة السلة ================= -->
+    <section id="cart" class="page hidden">
+      <div class="max-w-3xl mx-auto px-4 mt-10">
+        <h1 class="text-3xl font-bold mb-6" data-i18n="cart_title"></h1>
+        <div id="cart-items" class="flex flex-col gap-4"></div>
+
+        <div class="flex items-center justify-between mt-8 text-xl font-bold">
+          <span data-i18n="total"></span>
+          <span><span id="cart-total">0</span> <span data-i18n="currency"></span></span>
+        </div>
+
+        <a id="checkout-btn" href="#checkout" class="block text-center mt-6 bg-[#4f6b4a] text-white py-3 rounded-full hover:bg-[#2b1d16] transition" data-i18n="checkout_btn"></a>
+      </div>
+    </section>
+
+    <!-- ================= صفحة الدفع ================= -->
+    <section id="checkout" class="page hidden">
+      <div class="max-w-3xl mx-auto px-4 mt-10">
+        <h1 class="text-3xl font-bold mb-6" data-i18n="checkout_title"></h1>
+
+        <div id="checkout-box" class="grid md:grid-cols-2 gap-6">
+          <div class="bg-white rounded-2xl p-5 shadow h-fit">
+            <h2 class="font-bold mb-3" data-i18n="summary"></h2>
+            <div id="summary"></div>
+            <hr class="my-3">
+            <div class="flex justify-between font-bold">
+              <span data-i18n="total"></span>
+              <span><span id="checkout-total">0</span> <span data-i18n="currency"></span></span>
+            </div>
+          </div>
+
+          <form id="checkout-form" class="bg-white rounded-2xl p-5 shadow flex flex-col gap-4">
+            <input type="text" data-ph="ph_name" required class="border rounded-lg px-3 py-2">
+            <input type="tel" data-ph="ph_phone" required class="border rounded-lg px-3 py-2">
+            <input type="text" data-ph="ph_address" required class="border rounded-lg px-3 py-2">
+            <select class="border rounded-lg px-3 py-2">
+              <option data-i18n="pay_cod"></option>
+              <option data-i18n="pay_card"></option>
+              <option>Apple Pay</option>
+            </select>
+            <button type="submit" class="bg-[#4f6b4a] text-white py-3 rounded-full hover:bg-[#2b1d16] transition" data-i18n="confirm"></button>
+          </form>
+        </div>
+
+        <div id="success" class="hidden text-center py-16">
+          <p class="text-6xl mb-4">✅</p>
+          <h2 class="text-2xl font-bold mb-2" data-i18n="success_title"></h2>
+          <p class="mb-6 text-gray-600" data-i18n="success_text"></p>
+          <a href="#home" class="add-btn bg-[#2b1d16] text-white px-8 py-3 rounded-full" data-i18n="back_home"></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-[#2b1d16] text-white text-center py-6 mt-16">
+    <p class="brand text-2xl" data-i18n="brand">بُنّ</p>
+    <p class="text-sm text-gray-300" data-i18n="footer_text"></p>
+
+    <!-- بيانات الطالب -->
+    <div class="mt-4 pt-4 border-t border-white/20 text-sm text-gray-200">
+      <p><span data-i18n="prepared"></span> <span dir="rtl">أسامة أحمد الأهدل</span> - <span dir="ltr">Osama Ahmed Al-Ahdal</span></p>
+      <p><span data-i18n="uni_id"></span> <span dir="ltr">671431028</span></p>
+    </div>
+  </footer>
+
+  <!-- زر الرجوع لفوق -->
+  <button id="top-btn" class="fixed bottom-6 start-6 z-50 w-12 h-12 rounded-full bg-[#4f6b4a] text-white text-xl shadow-lg hover:bg-[#e0a458]" aria-label="Top">↑</button>
+
+  <!-- رسالة الإضافة -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#2b1d16] text-white px-5 py-2 rounded-full z-50"></div>
+
+  <!-- ملف JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+body {
+  font-family: "Readex Pro", sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.brand {
+  font-family: "Aref Ruqaa", serif;
+}
+
+/* ===== انتقال الصفحات: تظهر وتختفي بنعومة ===== */
+.page {
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+.page.fade {
+  opacity: 0;
+}
+
+/* ظل الهيدر لما ننزل تحت */
+#header.scrolled {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* رابط الصفحة الحالية */
+.nav-link.active {
+  color: #e0a458;
+  border-bottom: 2px solid #e0a458;
+}
+
+/* زر الرجوع لفوق: مخفي في البداية */
+#top-btn {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+#top-btn.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* رسالة "تمت الإضافة" */
+#toast {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+#toast.show {
+  opacity: 1;
+}
+
+/* زر الفلتر النشط */
+.filter-btn.active {
+  background: #2b1d16;
+  color: white;
+}
+
+/* ===================== الدارك مود =====================
+   لما يكون على html كلاس "dark" نغير الألوان */
+html.dark body {
+  background: #14100d !important;
+  color: #f1ece6 !important;
+}
+html.dark .bg-white {
+  background: #241c17 !important;
+}
+html.dark .bg-gray-200 {
+  background: #3a2e27 !important;
+}
+html.dark .text-gray-500,
+html.dark .text-gray-600,
+html.dark .text-gray-700 {
+  color: #b9aea3 !important;
+}
+html.dark .text-\[\#4f6b4a\] {
+  color: #9bc194 !important;
+}
+html.dark input,
+html.dark select {
+  background: #1b1511;
+  border-color: #4a3b32;
+  color: #f1ece6;
+}
+html.dark .filter-btn.active {
+  background: #e0a458;
+  color: #2b1d16;
+}
+html.dark .add-btn {
+  background: #4f6b4a !important;
+}
+html.dark .add-btn:hover {
+  background: #e0a458 !important;
+  color: #2b1d16;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page, #top-btn, #toast, body { transition: none; }
+}
